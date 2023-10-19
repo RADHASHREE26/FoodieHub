@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Restaurant - FoodieHub</title>
+    <style>
+        body {
+            background-image: url('/static/bg1.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: right;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 22px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #5a6807;
+        }
+
+        .restaurant-container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .restaurant-item {
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            height: 100px;
+            padding: 20px;
+        }
+
+        .restaurant-item img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        .restaurant-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #5a6807;
+        }
+
+        .restaurant-item p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: black;
+        }
+
+        form {
+            float: left;
+        }
+
+        /* Form Styles */
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        form button[type="submit"] {
+            background-color: #5a6807;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #333;
+        }
+        label{
+            color: cornsilk;
+        }
+
+        .signup-container{
+            width: max-content;
+        }
+
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <form method="POST" action="/search">
+                <input type="text" name="query" placeholder="Search..." id="search">
+                <button type="submit">Search</button>
+            </form>
+        </li>
+        <li><a href="/logout">Admin Logout</a></li>
+        <li><a href="/admin_restaurant">Restaurants</a></li>
+        <li><a href="http://127.0.0.1:5000/remove-restaurant">Remove Restaurant</a></li>
+    </ul>
+
+
+    <center>
+    <div class="signup-container">
+        <form method="POST" style="background-color: transparent", method="Post">
+            <label for="restaurant-name">Restaurant Name:</label>
+            <input type="text" id="restaurant-name" name="restaurant-name" required>
+  
+            <label for="restaurant-description">Description:</label>
+            <textarea id="restaurant-description" name="restaurant-description" rows="4" required></textarea>
+
+            <label for="restaurant-menu">Menu:</label>
+            <input type="text" id="menu" name="menu" required>
+
+            <label for="restaurant-image">Location:</label>
+            <input type="text" id="location" name="location" required>
+  
+            <label for="restaurant-image">Image URL:</label>
+            <input type="text" id="restaurant-image" name="restaurant-image" required>
+  
+            <button type="submit">Add Restaurant</button>
+        </form>
+      </div>
+    </center>
+
+</body>
+
+</html>

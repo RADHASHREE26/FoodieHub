@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FoodieHub</title>
+</head>
+<body>
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <center>
+            <p class="error" style="padding-top: 50px; color: cornsilk;"><strong>{{''.join(messages[-1:])}}</strong></p>
+        </center>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

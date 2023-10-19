@@ -1,0 +1,122 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FoodieHub</title>
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 20px 22px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #5a6807;
+        }
+        
+        input[type=text], input[type=password] {
+          padding: 12px 20px;
+          margin: 8px 0;
+          margin-left: 5px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+  
+        button[type=submit] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 30px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          
+        }
+  
+        button[type=submit]:hover {
+          background-color: #45a049;
+        }
+        
+        .login-container {
+          width: 50%;
+          margin: 0 auto;
+          text-align: left;
+          background-color: transparent;
+        }
+  
+        h2 {
+          margin-bottom: 20px;
+        }
+  
+        p {
+          text-align: center;
+          margin-top: 20px;
+          color: white;
+        }
+  
+        a {
+          color: #f9ffd8;
+        }
+        label {
+          color: cornsilk;
+        }
+        .container{
+          display: flex;
+          justify-content: space-between;
+        }
+    </style>
+  </head>
+  
+
+<body style="background-image: url('/static/bg1.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <ul class="container">
+        <li>
+            <form method="POST" action="/search">
+                <input type="text" name="query" placeholder="Search..." id="search">
+                <button type="submit">Search</button>
+            </form>
+        </li>
+        <li><a href="http://127.0.0.1:5000/">Home</a></li>
+        <li><a href="http://127.0.0.1:5000/restaurants">Restaurants</a></li>
+        <li><a href="#contact">Contact</a></li>
+        {% if session['user_id'] %}
+        <li><a href="http://127.0.0.1:5000/profile">Profile</a></li>
+        <li><a href="http://127.0.0.1:5000/logout">Logout</a></li>
+        {% else %}
+        <li><a href="http://127.0.0.1:5000/login">Login</a></li>
+        <li><a href="http://127.0.0.1:5000/signup">Sign Up</a></li>
+        
+        {% endif %}
+    </ul>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <center>
+            <p class="error" style="padding-top: 50px; color: cornsilk;"><strong>{{''.join(messages[-1:])}}</strong></p>
+        </center>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+
+<!-- <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul> -->

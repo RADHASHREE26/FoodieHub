@@ -1,0 +1,133 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/bg1.jpg');
+        }
+        h1 {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+        p {
+            color: #555;
+        }
+        .follow-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .unfollow-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .follow-count {
+            font-weight: bold;
+            margin-top: 20px;
+            display: flex;
+        }
+        .follow-count p {
+            margin: 5px 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Details</h1>
+    <div class="container">
+        <div>
+            <h2>Username:</h2>
+            <p>{{ user.name }}</p>
+        </div>
+        <div>
+            <h2>Profile Picture:</h2>
+            <img src="{{ user.image }}" alt="User Image">
+        </div>
+        <div>
+            <h2>Email:</h2>
+            <p>{{ user.email }}</p>
+        </div>
+        <div class="follow-count">
+            <p>Followers: {{ user.followers|length }}</p>
+            <p>Following: {{ user.following|length }}</p>
+        </div>
+        {% if followername in user.followers %}
+        <form method="POST" action="/unfollow">
+            <input type="hidden" name="user_id" value="{{ user.name }}">
+            <button class="unfollow-button" onclick="toggleFollow()">Unfollow</button>
+        </form>
+        {% else %}
+        <form method="POST" action="/follow">
+            <input type="hidden" name="user_id" value="{{ user.name }}">
+            <button class="follow-button" onclick="toggleFollow()">Follow</button>
+        </form>
+        {% endif %}
+
+        <h3> User Blogs: </h3>
+        <div class="review-container">
+            <ul>
+                {% for blog in user.blogs %}
+                    <li>
+                        <p>{{ blog }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <center>
+            <p class="error" style="padding-top: 50px; color: cornsilk;"><strong>{{''.join(messages[-1:])}}</strong></p>
+        </center>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <script>
+        function toggleFollow() {
+            const followButton = document.querySelector('.follow-button');
+            const unfollowButton = document.querySelector('.unfollow-button');
+            followButton.style.display = followButton.style.display === 'none' ? 'block' : 'none';
+            unfollowButton.style.display = unfollowButton.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
+

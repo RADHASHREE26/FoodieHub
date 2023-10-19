@@ -1,0 +1,102 @@
+{% extends "flashes.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FoodieHub</title>
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 20px 22px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #5a6807;
+        }
+        
+        input[type=text], input[type=password] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+
+        button[type=submit] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 30px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          display: block;
+          margin: 0 auto;
+        }
+
+        button[type=submit]:hover {
+          background-color: #45a049;
+        }
+        
+        .login-container {
+          width: 50%;
+          margin: 0 auto;
+          text-align: left;
+          background-color: transparent;
+        }
+
+        h2 {
+          margin-bottom: 20px;
+        }
+
+        form {
+          margin-top: 20px;
+        }
+
+        p {
+          text-align: center;
+          margin-top: 20px;
+          color: white;
+        }
+
+        a {
+          color: #f9ffd8;
+        }
+        label {
+          color: cornsilk;
+        }
+    </style>
+</head>
+<body style="background-image: url('/static/bg1.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <div class="login-container">
+      <h2 style="color: cornsilk; padding-left: 200px;">Login to FoodieHub</h2>
+      <form method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+    </div>
+
+</body>
+{%endblock%}

@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants - FoodieHub</title>
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 20px 22px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #5a6807;
+        }
+        
+        .restaurant-container {
+          width: 80%;
+          margin: 0 auto;
+          text-align: left;
+          background-color: #f2f2f2;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+          padding: 20px;
+        }
+
+        h2 {
+          margin-bottom: 20px;
+          color: black;
+        }
+
+        .restaurant-item {
+          background-color: transparent;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #ddd;
+          height: 100px;
+          padding: 20px;
+        }
+
+        .restaurant-item img {
+          width: 100px;
+          height: 100px;
+          margin-right: 20px;
+          border-radius: 5px;
+        }
+
+        .restaurant-item h3 {
+          margin: 0;
+          font-size: 1.5em;
+          color: #5a6807;
+        }
+
+        .restaurant-item p {
+          margin-top: 10px;
+          font-size: 1.2em;
+          color: black;
+        }
+
+        form {
+          float: left;
+        }
+    </style>
+</head>
+<body style="background-image: url('/static/bg1.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    <ul>
+      <li>
+        <form method="POST" action="/search">
+            <input type="text" name="query" placeholder="Search..." id="search">
+            <button type="submit">Search</button>
+        </form>
+    </li>
+        </li>
+        <li><a href="http://127.0.0.1:5000/logout">Admin Logout</a></li>
+        <li><a href="http://127.0.0.1:5000/add-restaurant">Add Restaurant</a></li>
+        <li><a href="http://127.0.0.1:5000/remove_res">Remove Restaurant</a></li>
+    </ul>
+
+    <div class="restaurant-container">
+      <h2>Featured Restaurants</h2>
+      {% for restaurant in restaurants %}
+        <div class="restaurant-item">
+            <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}">
+            <div>
+              <h3><a href="{{ url_for('restaurant_res', res_id=restaurant._id) }}">{{restaurant.name}}</a></h3>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <form action="">
+      <button><a href="http://127.0.0.1:5000/add-restaurant">Add Restaurant</a></button>
+        <button><a href="http://127.0.0.1:5000/remove_res">Remove Restaurant</a></button>
+    </form>
+
+    <a id="add-restaurant"></a>  <!-- Added -->
+
+</body>
+</html>

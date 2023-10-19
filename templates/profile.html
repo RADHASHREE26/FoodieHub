@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }}'s Profile</title>
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li {
+          float: right;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 20px 22px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #5a6807;
+        }
+
+        .profile-info-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        .profile-picture {
+          width: 300px;
+          height: 300px;
+          object-fit: cover;
+          border-radius: 50%;
+          margin-top: 50px;
+        }
+
+        h1 {
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+
+        .follower-following-container {
+          display: flex;
+        }
+
+        .follower-following {
+          margin: 20px;
+          text-align: center;
+        }
+
+        button[type=view-reviews] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 30px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          display: block;
+          margin: 0 auto;
+          margin-top: 50px;
+        }
+
+        button[type=view-reviews]:hover {
+          background-color: #45a049;
+        }
+
+        .reviews-container {
+          margin-top: 50px;
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          flex-wrap: wrap;
+        }
+
+        .review {
+          width: 30%;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          padding: 16px;
+          margin: 20px;
+          text-align: left;
+          border-radius: 4px;
+        }
+
+        .review h2 {
+          margin: 0;
+        }
+
+        .review p {
+          margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <ul>
+        <li><a href="#signup">Sign Up</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#restaurants">Restaurants</a></li>
+        <li><a href="http://127.0.0.1:5000/">Home</a></li>
+    </ul> -->
+
+    <div class="profile-info-container">
+      <h1>{{user.name}}</h1>
+      <img class="profile-picture" src="{{user.image}}" alt="Profile Picture">
+      <div class="follower-following-container">
+        <div class="follower-following">
+          <p><strong>{{ user.followers|length }}</strong></p>
+          <p>Followers</p>
+        </div>
+        <div class="follower-following">
+          <p><strong>{{ user.following|length }}</strong></p>
+          <p>Following</p>
+        </div>
+      </div>
+
+      <form method="POST" action="/edit_profile">
+        <input type="hidden" name="edit" value="{{ user.name }}">
+        <button class="edit">Edit Profile</button>
+      </form>
+
+
+      <form class="food-blog-form" method="POST" action="/submit_blog">
+        <h2>Write Food Blog</h2>
+        <textarea name="blogContent" id="blogContent" placeholder="Write your blog here"></textarea>
+        <button type="submit" name="submitBlog">Submit</button>
+      </form>
+
+      <!-- Display the food blogs -->
+      <div class="reviews-container">
+        {% for blog in user.blogs %}
+        <div class="review">
+          <!-- <h2>{{ blog.title }}</h2> -->
+          <p>{{ blog }}</p>
+          <!-- <p>Written by {{ blog.author }} on {{ blog.date_created }}</p> -->
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+</body>
+</html>
